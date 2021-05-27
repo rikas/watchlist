@@ -1,0 +1,26 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Add movie to <%= @list.name %></h3>
+
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <% if @bookmark.errors.any? %>
+            <div class="alert alert-danger">
+              <h3>You must correct these errors</h3>
+              <ul>
+                <% @bookmark.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= f.input :comment %>
+          <%= f.association :movie, collection: Movie.all - @list.movies %>
+          <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
