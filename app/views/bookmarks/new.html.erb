@@ -7,7 +7,7 @@
         <%= simple_form_for [@list, @bookmark] do |f| %>
           <% if @bookmark.errors.any? %>
             <div class="alert alert-danger">
-              <h3>You must correct these errors</h3>
+              <h5>You must correct these errors</h5>
               <ul>
                 <% @bookmark.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -18,7 +18,8 @@
 
           <%= f.input :comment %>
           <%= f.association :movie, collection: Movie.all - @list.movies %>
-          <%= f.submit class: 'btn btn-primary' %>
+          <%= f.submit class: 'btn btn-primary' %> or
+          <%= link_to 'Cancel', list_path(@list), class: 'text-danger' %>
         <% end %>
       </div>
     </div>
